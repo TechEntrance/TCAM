@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Tennis Cricket Association of Maharashtra & Maharashtra | Promoting Tennis Cricket</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <meta name="description" content="Official website of Tennis Cricket Association of Maharashtra & Maharashtra. Promoting and developing Tennis Cricket across India with a focus on nurturing young talent." />
+  <meta name="keywords" content="Tennis Cricket, Cricket Association, India Cricket, Maharashtra Cricket, Sports Association" />
+  <meta name="author" content="Tennis Cricket Association of Maharashtra" />
+
+  <link rel="shortcut icon" href="ftco-32x32.png">
+
+  <link href="https://fonts.googleapis.com/css?family=Muli:300,400,700,900" rel="stylesheet">
+  <link rel="stylesheet" href="fonts/icomoon/style.css">
+
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/jquery-ui.css">
+  <link rel="stylesheet" href="css/owl.carousel.min.css">
+  <link rel="stylesheet" href="css/owl.theme.default.min.css">
+  <link rel="stylesheet" href="css/owl.theme.default.min.css">
+
+  <link rel="stylesheet" href="css/jquery.fancybox.min.css">
+
+  <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+
+  <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
+
+  <link rel="stylesheet" href="css/aos.css">
+  <link href="css/jquery.mb.YTPlayer.min.css" media="all" rel="stylesheet" type="text/css">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/tournaments.css">
+
+  <!-- Language Toggle Button -->
+  <button class="language-toggle" id="toggleLanguage">
+    <span id="currentLang">मराठी</span>
+    <img id="languageFlag" src="https://flagcdn.com/24x18/in.png" alt="Change Language">
+  </button>
+
+  <!-- Google Translate Element -->
+  <div id="google_translate_element" style="display: none;"></div>
+
+  <script type="text/javascript">
+    // Global state
+    let currentLanguage = localStorage.getItem('preferredLanguage') || 'en';
+    let googleTranslateInitialized = false;
+
+    // Function to update UI
+    function updateUI() {
+      const currentLang = document.getElementById('currentLang');
+      const languageFlag = document.getElementById('languageFlag');
+      
+      if (currentLanguage === 'mr') {
+        currentLang.textContent = 'English';
+        languageFlag.src = 'https://flagcdn.com/24x18/in.png';
+      } else {
+        currentLang.textContent = 'मराठी';
+        languageFlag.src = 'https://flagcdn.com/24x18/gb.png';
+      }
+    }
+
+    // Function to change language
+    function changeLanguage() {
+      currentLanguage = currentLanguage === 'en' ? 'mr' : 'en';
+      localStorage.setItem('preferredLanguage', currentLanguage);
+      
+      if (googleTranslateInitialized) {
+        // If already initialized, just change the language
+        const selectField = document.querySelector('.goog-te-combo');
+        if (selectField) {
+          selectField.value = currentLanguage;
+          selectField.dispatchEvent(new Event('change'));
+        }
+      } else {
+        // If not initialized, load the script
+        loadGoogleTranslate();
+      }
+      
+      updateUI();
+    }
+
+    // Load Google Translate script
+    function loadGoogleTranslate() {
+      // Check if already loaded
+      if (window.google && window.google.translate) {
+        initGoogleTranslate();
+        return;
+      }
+      
+      // Create script element
+      const script = document.createElement('script');
+      script.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+      script.async = true;
+      
+      // Set up callback
+      window.googleTranslateElementInit = initGoogleTranslate;
+      
+      // Add error handling
+      script.onerror = function() {
+        console.error('Failed to load Google Translate');
+      };
+      
+      // Add to document
+      document.body.appendChild(script);
+    }
+
+    // Initialize Google Translate
+    function initGoogleTranslate() {
+      googleTranslateInitialized = true;
+      
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'en,mr',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+        autoDisplay: false
+      }, 'google_translate_element');
+      
+      // Set initial language after a short delay
+      setTimeout(() => {
+        const selectField = document.querySelector('.goog-te-combo');
+        if (selectField) {
+          selectField.value = currentLanguage;
+          selectField.dispatchEvent(new Event('change'));
+        }
+      }, 500);
+      
+      // Hide Google's default UI
+      const style = document.createElement('style');
+      style.textContent = `
+        .goog-te-gadget,
+        .goog-te-gadget-simple,
+        .goog-te-menu-value,
+        .goog-te-gadget img,
+        .goog-te-banner-frame,
+        .goog-tooltip,
+        .goog-tooltip:hover,
+        .goog-text-highlight,
+        .goog-te-combo,
+        .goog-te-ftab,
+        .goog-te-menu,
+        .goog-te-menu2,
+        .goog-te-balloon,
+        .goog-te-balloon-frame,
+        .goog-te-ftab-frame,
+        .goog-te-float-top,
+        .goog-te-float-bottom,
+        .goog-te-float-content,
+        .goog-te-spinner,
+        .goog-te-spinner-pos,
+        .goog-te-banner,
+        .goog-te-ftab-body,
+        .goog-te-ftab-body *,
+        iframe[src*="translate"] {
+          display: none !important;
+          visibility: hidden !important;
+          opacity: 0 !important;
+          height: 0 !important;
+          width: 0 !important;
+          overflow: hidden !important;
+          position: absolute !important;
+          left: -9999px !important;
+          pointer-events: none !important;
+        }
+      `;
+      document.head.appendChild(style);
+    }
+
+    // Initialize when DOM is loaded
+    document.addEventListener('DOMContentLoaded', function() {
+      // Add click handler to toggle button
+      const toggleBtn = document.getElementById('toggleLanguage');
+      if (toggleBtn) {
+        toggleBtn.addEventListener('click', changeLanguage);
+      }
+      
+      // Initialize UI
+      updateUI();
+      
+      // Load Google Translate if needed
+      if (currentLanguage === 'mr') {
+        loadGoogleTranslate();
+      }
+    });
+  </script>
+
+  <style>
+    /* Language Toggle Button Styles */
+    .language-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 10000;
+      background: #fff;
+      padding: 8px 15px;
+      border-radius: 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+      border: 1px solid #ddd;
+      transition: all 0.3s ease;
+    }
+    .language-toggle:hover {
+      background: #f8f9fa;
+      transform: translateY(-2px);
+    }
+    .language-toggle:active {
+      transform: translateY(0);
+    }
+    .language-toggle img {
+      width: 20px;
+      height: 15px;
+      object-fit: cover;
+    }
+    
+    /* Prevent layout shifts */
+    body {
+      top: 0 !important;
+    }
+  </style>
+</head>
+
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+  <div class="site-wrap">
+
+    <div class="site-mobile-menu site-navbar-target">
+      <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close mt-3">
+          <span class="icon-close2 js-menu-toggle"></span>
+        </div>
+      </div>
+      <div class="site-mobile-menu-body"></div>
+    </div>
+
+
+    <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner">
+
+      <div class="container-fluid">
+        <div class="d-flex align-items-center">
+          <div class="site-logo"><a href="index.html">
+            <img src="images/logo.png" alt="Logo" style="width: 50px; height: 50px; object-fit: cover;">
+            TCAM<span>.</span> </a></div>
+          <div class="ml-auto">
+            
+            <nav class="site-navigation position-relative text-right" role="navigation">
+              <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+                <li><a href="#home-section" class="nav-link" data-translate="home">Home</a></li>
+                <li><a href="#about-section" class="nav-link" data-translate="about">About Us</a></li>
+                <li><a href="#leadership-section" class="nav-link" data-translate="leadership">Leadership</a></li>
+                <li><a href="#tournaments-section" class="nav-link" data-translate="tournaments">Tournaments</a></li>
+                <li><a href="#gallery-section" class="nav-link" data-translate="gallery">Gallery</a></li>
+                <li><a href="#contact-section" class="nav-link" data-translate="contact">Contact</a></li>
+              </ul>
+            </nav>
+            <a href="#" class="d-inline-block d-lg-none site-menu-toggle js-menu-toggle float-right"><span class="icon-menu h3"></span></a>
+          </div>
+
+        </div>
+      </div>
+
+    </header>
+
+    <!-- Hero Section with Image Slideshow -->
+    <div class="hero-slideshow" id="home-section">
+      <div class="owl-carousel hero-carousel">
+        <!-- First 20 images from TCAI directory -->
+        <div class="hero-slide" style="background-image: url('images/TCAI/IMG-20250628-WA0079.jpg');"></div>
+        <div class="hero-slide" style="background-image: url('images/TCAI/IMG-20250628-WA0080.jpg');"></div>
+        <div class="hero-slide" style="background-image: url('images/TCAI/IMG-20250628-WA0081.jpg');"></div>
+        <div class="hero-slide" style="background-image: url('images/TCAI/IMG-20250628-WA0082.jpg');"></div>
+        <div class="hero-slide" style="background-image: url('images/TCAI/IMG-20250628-WA0083.jpg');"></div>
+        <div class="hero-slide" style="background-image: url('images/TCAI/IMG-20250628-WA0084.jpg');"></div>
+        <div class="hero-slide" style="background-image: url('images/TCAI/IMG-20250628-WA0085.jpg');"></div>
+        <div class="hero-slide" style="background-image: url('images/TCAI/IMG-20250628-WA0086.jpg');"></div>
+        <div class="hero-slide" style="background-image: url('images/TCAI/IMG-20250628-WA0087.jpg');"></div>
+        <div class="hero-slide" style="background-image: url('images/TCAI/IMG-20250628-WA0088.jpg');"></div>
+        <div class="hero-slide" style="background-image: url('images/TCAI/IMG-20250628-WA0089.jpg');"></div>
+        <div class="hero-slide" style="background-image: url('images/TCAI/IMG-20250628-WA0090.jpg');"></div>
+        <div class="hero-slide" style="background-image: url('images/TCAI/IMG-20250628-WA0091.jpg');"></div>
+        <div class="hero-slide" style="background-image: url('images/TCAI/IMG-20250628-WA0092.jpg');"></div>
+        <div class="hero-slide" style="background-image: url('images/TCAI/IMG-20250628-WA0093.jpg');"></div>
+        <div class="hero-slide" style="background-image: url('images/TCAI/IMG-20250628-WA0094.jpg');"></div>
+        <div class="hero-slide" style="background-image: url('images/TCAI/IMG-20250628-WA0095.jpg');"></div>
+        <div class="hero-slide" style="background-image: url('images/TCAI/IMG-20250628-WA0096.jpg');"></div>
+        <div class="hero-slide" style="background-image: url('images/TCAI/IMG-20250628-WA0097.jpg');"></div>
+        <div class="hero-slide" style="background-image: url('images/TCAI/IMG-20250628-WA0098.jpg');"></div>
+        <div class="hero-slide" style="background-image: url('images/TCAI/IMG-20250628-WA0099.jpg');"></div>
+        <div class="hero-slide" style="background-image: url('images/TCAI/IMG-20250628-WA0100.jpg');"></div>
+        <div class="hero-slide" style="background-image: url('images/TCAI/IMG-20250628-WA0101.jpg');"></div>
+        <div class="hero-slide" style="background-image: url('images/TCAI/IMG-20250628-WA0102.jpg');"></div>
+        <div class="hero-slide" style="background-image: url('images/TCAI/IMG-20250628-WA0103.jpg');"></div>
+        <div class="hero-slide" style="background-image: url('images/TCAI/IMG-20250628-WA0104.jpg');"></div>
+        <div class="hero-slide" style="background-image: url('images/TCAI/IMG-20250628-WA0105.jpg');"></div>
+        <div class="hero-slide" style="background-image: url('images/TCAI/IMG-20250628-WA0106.jpg');"></div>
+        <div class="hero-slide" style="background-image: url('images/TCAI/IMG-20250628-WA0107.jpg');"></div>
+      </div>
+      
+      <!-- Hero Content Overlay -->
+      <div class="intro-section" style="background-color: rgba(0, 0, 0, 0.5);">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-lg-12 mx-auto text-center" data-aos="fade-up">
+              <h1 class="mb-3 text-white" data-translate="welcome">Tennis Cricket Association of Maharashtra</h1>
+              <h3 class="text-white mb-4" data-translate="tagline">Nurturing Talent, Building Champions</h3>
+              <p class="lead mx-auto desc mb-5 text-white" data-translate="welcomeText">Promoting and developing Tennis Cricket across India with a focus on nurturing young talent and providing a platform for players to excel at national and international levels.</p>
+              <div class="d-flex justify-content-center gap-3">
+                <a href="#about-section" class="btn btn-primary py-3 px-5" data-translate="learnMore">Learn More</a>
+                <a href="#contact-section" class="btn btn-outline-white py-3 px-5" data-translate="joinUs">Join Us</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="schedule-wrap" style="background-color: #0a4d68;">
+      <div class="d-md-flex align-items-center">
+        <div class="hours mr-md-4 mb-4 mb-lg-0 text-white">
+          <strong class="d-block">Office Hours</strong>
+          Monday - Saturday: 9:00 AM — 6:00 PM
+        </div>
+        <div class="cta ml-auto">
+          <a href="tel:918421023200" class="d-flex d-md-flex align-items-center btn btn-light">
+            <span class="mx-auto"><i class="icon-phone mr-2"></i> <span data-translate="callUs">Call Us: +91 84210 23200</span> <span class="arrow icon-keyboard_arrow_right"></span></span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="site-section" id="about-section">
+      <div class="container">
+        <div class="row justify-content-center text-center mb-5">
+          <div class="col-md-8 section-heading">
+            <span class="subheading" data-translate="aboutUs">About Us</span>
+            <h2 class="heading mb-3" data-translate="aboutTitle">Tennis Cricket Association of Maharashtra</h2>
+            <p class="lead" data-translate="aboutDescription">The Tennis Cricket Association of Maharashtra (TCAM) is the official governing body for tennis cricket in Maharashtra. Established with a vision to promote and develop tennis cricket across the state, we provide a structured platform for players of all ages to showcase their talent and represent Maharashtra at national levels.</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-6 mb-5">
+            <h3 data-translate="ourMission">Our Mission</h3>
+            <p data-translate="missionText">To nurture and promote tennis cricket at the grassroots level in Maharashtra, identify and develop young talent across all districts, and provide them with opportunities to excel at state and national levels.</p>
+            <ul class="list-unstyled ul-check success">
+              <li data-translate="mission1">Promote tennis cricket across all 36 districts of Maharashtra</li>
+              <li data-translate="mission2">Organize structured district and state-level tournaments</li>
+              <li data-translate="mission3">Develop coaching programs in partnership with local academies</li>
+              <li data-translate="mission4">Establish strong district-level associations</li>
+              <li data-translate="mission5">Identify and nurture talent for national representation</li>
+            </ul>
+          </div>
+          <div class="col-lg-6">
+            <div class="img-wrap">
+              <img src="images/TCAI/aboutus.jpeg" alt="Tennis Cricket Association of Maharashtra" class="img-fluid rounded">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bgimg" style="background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('images/TCAI/IMG-20250628-WA0090.jpg'); background-size: cover; background-position: center; padding: 40px 0;" data-stellar-background-ratio="0.5">
+      <div class="container">
+        <div class="row align-items-center justify-content-center text-center">
+          <div class="col-md-10">
+            <h2 class="text-white mb-4" style="font-size: 2.5rem; font-weight: 600; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">Developing Future Cricket Stars</h2>
+            <p class="lead text-white mb-5 mx-auto" style="max-width: 800px; font-size: 1.25rem; text-shadow: 1px 1px 2px rgba(0,0,0,0.5);">
+              Join Maharashtra's premier platform for nurturing cricket talent. Our programs focus on technical excellence, physical fitness, and mental toughness to develop well-rounded cricketers.
+            </p>
+            <div class="d-flex justify-content-center gap-3">
+              <a href="#training-programs" class="btn btn-warning btn-lg px-4 py-3" style="border-radius: 30px; font-weight: 600;">Training Programs</a>
+              <a href="#register" class="btn btn-outline-light btn-lg px-4 py-3" style="border-radius: 30px; font-weight: 600;">Register Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Leadership Section-->
+    <div class="site-section bg-light" id="leadership-section">
+      <div class="container">
+        <div class="row justify-content-center text-center mb-5">
+          <div class="col-md-8">
+            <span class="subheading" data-translate="leadership">Our Leadership</span>
+            <h2 class="heading mb-4" data-translate="meetTheTeam">Meet Our Leaders</h2>
+            <p class="mb-5" data-translate="leadershipIntro">Dedicated individuals leading the Tennis Cricket movement in Maharashtra</p>
+          </div>
+        </div>
+        
+        <!-- Meenakshi Giri -->
+        <div class="row align-items-center mb-5 pb-5 border-bottom">
+          <div class="col-lg-5 mb-5 mb-lg-0">
+            <div class="leader-image" style="position: relative; overflow: hidden; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+              <img src="images/meenakshi-giri.jpg" alt="Meenakshi Giri" class="img-fluid" style="transition: transform 0.5s ease;">
+              <div class="leader-overlay" style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.7)); padding: 30px; color: white;">
+                <h3 class="text-white mb-1">Meenakshi Giri</h3>
+                <p class="text-white-50 mb-2">Secretary – Tennis Cricket Association of India & Maharashtra</p>
+                <div class="leader-contact">
+                  <p class="mb-1"><i class="icon-phone mr-2"></i> <a href="tel:+918421023200" class="text-white">+91 84210 23200</a></p>
+                  <p class="mb-0"><i class="icon-envelope-o mr-2"></i> <a href="mailto:minakshij285@gmail.com" class="text-white">minakshij285@gmail.com</a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-7">
+            <div class="pl-lg-5">
+              <h3 class="mb-4" data-translate="aboutLeader">About Meenakshi Giri</h3>
+              <p>Meenakshi Giri was born into a humble farming family in the Latur district of Maharashtra. Her parents, Uttam Shankar Puri and Laxmibai Uttam Puri, instilled good values and discipline in her from an early age. Despite being physically challenged with one leg and one hand, her father had a deep interest in sports, especially kabaddi. His struggle and love for sports had a profound impact on Meenakshi's life and laid the foundation for her sporting spirit.</p>
+              <p>After marriage, Meenakshi's life took a new turn. She married Vilas Giri and began a new life in Nashik, Maharashtra. Her husband and in-laws always encouraged her to pursue education and sports.</p>
+              <p>Meenakshi Giri began her career as a sports teacher in schools and colleges, where she inspired and guided many young students. Her dedication to sports connected her with the Tennis Cricket Association of India. She initially served as the Secretary of the Nashik district, where her working style and leadership quickly gained recognition.</p>
+              <p>Through consistent hard work and contribution, she became the State Secretary of Maharashtra, and today, she proudly serves as the National Secretary of the Tennis Cricket Association of India. Her journey from a small-town girl to a national-level leader is a living story of determination, confidence, and relentless effort.</p>
+              
+              <div class="bg-light p-4 mt-4 border-left border-primary" style="border-left-width: 4px !important;">
+                <h5 class="text-primary mb-3">Message to Future Players:</h5>
+                <p class="font-italic mb-0">"Believe in yourself, stay disciplined, and play with all your heart. Your dedication will surely be recognized. Tennis Cricket is progressing rapidly, and the next shining star could be you. Keep growing continuously and never stop dreaming."</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Mayuri Giri -->
+        <div class="row align-items-center">
+          <div class="col-lg-5 mb-5 mb-lg-0 order-lg-2">
+            <div class="leader-image" style="position: relative; overflow: hidden; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+              <img src="images/mayuri-giri.jpg" alt="Mayuri Giri" class="img-fluid" style="transition: transform 0.5s ease;">
+              <div class="leader-overlay" style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.7)); padding: 20px; color: white;">
+                <h3 class="text-white mb-1">Mayuri Giri</h3>
+                <p class="text-white-50 mb-2">President – Tennis Cricket Association Maharashtra</p>
+                <div class="leader-contact">
+                  <p class="mb-1"><i class="icon-graduation-cap mr-2"></i> M.B.A.</p>
+                  <p class="mb-1"><i class="icon-soccer-ball-o mr-2"></i> Cricket & Kabaddi</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-7 order-lg-1">
+            <div class="pr-lg-5">
+              <h3 class="mb-4">About Mayuri Giri</h3>
+              <p>Mayuri Giri, daughter of Meenakshi Giri and Vilas Giri, has been interested in sports since childhood. Inspired by her parents, she has grown up with a passion for cricket and kabaddi. Her educational background includes an M.B.A., which she combines with her love for sports in her leadership role.</p>
+              <p>As the President of the Tennis Cricket Association Maharashtra, Mayuri is committed to taking the game of Tennis Cricket to rural areas, discovering emerging talents, and elevating them to the national level. Her vision extends beyond sports, aiming to create positive social transformation through athletic development.</p>
+              
+              <div class="bg-light p-4 mt-4 border-left border-primary" style="border-left-width: 4px !important;">
+                <h5 class="text-primary mb-3">Message to the Youth:</h5>
+                <p class="font-italic mb-0">"Dream big, but never shy away from working hard to achieve them. Discipline, perseverance, and confidence are the true strengths of success. Play with honesty on the field, and opportunities will surely knock at your door."</p>
+              </div>
+              
+              <div class="mt-4">
+                <h5 class="mb-3">Vision for Maharashtra Tennis Cricket:</h5>
+                <ul class="list-unstyled">
+                  <li class="mb-2"><i class="icon-check text-primary mr-2"></i> Promote Tennis Cricket in rural areas</li>
+                  <li class="mb-2"><i class="icon-check text-primary mr-2"></i> Identify and nurture young talent</li>
+                  <li class="mb-2"><i class="icon-check text-primary mr-2"></i> Provide quality training and facilities</li>
+                  <li class="mb-2"><i class="icon-check text-primary mr-2"></i> Create pathways to national representation</li>
+                  <li class="mb-0"><i class="icon-check text-primary mr-2"></i> Foster sportsmanship and discipline</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tournaments Section -->
+    <section class="tournaments-section" id="tournaments">
+      <div class="container">
+        <div class="section-title">
+          <span class="d-block" data-translate="tournaments.subtitle">Our Events</span>
+          <h2 data-translate="tournaments.title">Upcoming & Recent Tournaments</h2>
+          <p data-translate="tournaments.description">Discover our exciting tennis cricket tournaments and events</p>
+        </div>
+        
+        <!-- Filter Buttons -->
+        <div class="filter-buttons">
+          <button class="filter-btn active" data-filter="all" data-translate="tournaments.filter.all">All Tournaments</button>
+          <button class="filter-btn" data-filter="recent" data-translate="tournaments.filter.recent">Recent</button>
+          <button class="filter-btn" data-filter="upcoming" data-translate="tournaments.filter.upcoming">Upcoming</button>
+          <button class="filter-btn" data-filter="highlights" data-translate="tournaments.filter.highlights">Highlights</button>
+        </div>
+        
+        <!-- Tournaments Grid -->
+        <div class="row" id="tournament-container">
+          <!-- Tournaments will be loaded here by JavaScript -->
+        </div>
+        
+        <!-- Load More Button -->
+        <div class="load-more">
+          <button id="load-more-btn" class="load-more-btn" data-translate="tournaments.loadMore">
+            Load More Tournaments
+          </button>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Gallery Modal -->
+    <div class="modal fade gallery-modal" id="galleryModal" tabindex="-1" role="dialog" aria-labelledby="galleryModalTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="galleryModalTitle">Tournament Gallery</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body p-0">
+            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+              <div class="carousel-inner" id="modal-gallery">
+                <!-- Images will be loaded here by JavaScript -->
+              </div>
+              <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <p class="text-muted mb-0" id="image-caption"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add this script before closing body tag -->
+    <script>
+      // Tournament data
+      const tournaments = [
+        {
+          id: 1,
+          title: 'Mumbai Premier League',
+          date: 'May 15-30, 2025',
+          location: 'Mumbai, Maharashtra',
+          description: 'Annual premier tennis cricket tournament featuring top teams from across Mumbai competing for the championship title.',
+          category: 'recent',
+          images: [
+            'IMG-20250628-WA0037.jpg',
+            'IMG-20250628-WA0038.jpg',
+            'IMG-20250628-WA0039.jpg',
+            'IMG-20250628-WA0040.jpg'
+          ],
+          buttonText: 'View Gallery',
+          buttonClass: 'btn-outline-primary',
+          buttonAction: 'gallery'
+        },
+        {
+          id: 2,
+          title: 'Maharashtra State Cup',
+          date: 'July 10-25, 2025',
+          location: 'Pune, Maharashtra',
+          description: 'State-level championship bringing together the best tennis cricket talent from across Maharashtra.',
+          category: 'upcoming',
+          images: [
+            'IMG-20250628-WA0050.jpg',
+            'IMG-20250628-WA0051.jpg',
+            'IMG-20250628-WA0052.jpg',
+            'IMG-20250628-WA0053.jpg'
+          ],
+          buttonText: 'Register Now',
+          buttonClass: 'btn-primary',
+          buttonAction: 'register'
+        },
+        {
+          id: 3,
+          title: 'TCAI Champions Trophy',
+          date: 'March 5-20, 2025',
+          location: 'Nashik, Maharashtra',
+          description: 'The most prestigious tournament in the TCAI calendar featuring top teams from across the state.',
+          category: 'highlights',
+          images: [
+            'IMG-20250628-WA0065.jpg',
+            'IMG-20250628-WA0066.jpg',
+            'IMG-20250628-WA0067.jpg',
+            'IMG-20250628-WA0068.jpg'
+          ],
+          buttonText: 'Watch Highlights',
+          buttonClass: 'btn-outline-primary',
+          buttonAction: 'highlights'
+        },
+        {
+          id: 4,
+          title: 'Nashik Super League',
+          date: 'February 1-15, 2025',
+          location: 'Nashik, Maharashtra',
+          description: 'Local tournament showcasing emerging talent from Nashik and surrounding areas.',
+          category: 'recent',
+          images: [
+            'IMG-20250628-WA0045.jpg',
+            'IMG-20250628-WA0046.jpg',
+            'IMG-20250628-WA0047.jpg',
+            'IMG-20250628-WA0048.jpg'
+          ],
+          buttonText: 'View Gallery',
+          buttonClass: 'btn-outline-primary',
+          buttonAction: 'gallery'
+        },
+        {
+          id: 5,
+          title: 'Maharashtra Youth Tournament',
+          date: 'August 15-30, 2025',
+          location: 'Mumbai, Maharashtra',
+          description: 'Exclusive tournament for young talents under 19 years of age.',
+          category: 'upcoming',
+          images: [
+            'IMG-20250628-WA0055.jpg',
+            'IMG-20250628-WA0056.jpg',
+            'IMG-20250628-WA0057.jpg',
+            'IMG-20250628-WA0058.jpg'
+          ],
+          buttonText: 'Register Now',
+          buttonClass: 'btn-primary',
+          buttonAction: 'register'
+        },
+        {
+          id: 6,
+          title: 'TCAI T20 Challenge',
+          date: 'January 10-25, 2025',
+          location: 'Pune, Maharashtra',
+          description: 'Fast-paced T20 format tournament featuring exciting matches.',
+          category: 'highlights',
+          images: [
+            'IMG-20250628-WA0070.jpg',
+            'IMG-20250628-WA0071.jpg',
+            'IMG-20250628-WA0072.jpg',
+            'IMG-20250628-WA0073.jpg'
+          ],
+          buttonText: 'Watch Highlights',
+          buttonClass: 'btn-outline-primary',
+          buttonAction: 'highlights'
+        }
+      ];
+
+      // Filter tournaments
+      function filterTournaments(category) {
+        const container = document.getElementById('tournament-container');
+        container.innerHTML = '';
+        
+        const filteredTournaments = category === 'all' 
+          ? tournaments 
+          : tournaments.filter(tournament => tournament.category === category);
+        
+        displayTournaments(filteredTournaments.slice(0, 6));
+        
+        // Show/hide load more button based on number of items
+        document.getElementById('load-more-btn').style.display = 
+          filteredTournaments.length > 6 ? 'inline-block' : 'none';
+      }
+
+      // Display tournaments
+      let currentPage = 1;
+      const itemsPerPage = 6;
+      
+      function displayTournaments(tournamentsToShow, append = false) {
+        const container = document.getElementById('tournament-container');
+        
+        if (!append) {
+          container.innerHTML = '';
+          currentPage = 1;
+        }
+        
+        tournamentsToShow.forEach(tournament => {
+          const card = `
+            <div class="col-lg-4 col-md-6 mb-4" data-category="${tournament.category}">
+              <div class="tournament-card h-100">
+                <div class="position-relative overflow-hidden" style="height: 250px; border-radius: 10px; overflow: hidden; cursor: pointer;" 
+                     onclick="openGallery(${tournament.id}, '${tournament.title}')">
+                  <img src="images/TCAI/${tournament.images[0]}" alt="${tournament.title}" class="img-fluid w-100 h-100" style="object-fit: cover; transition: transform 0.5s ease;">
+                  <div class="tournament-overlay d-flex flex-column justify-content-end p-4">
+                    <h4 class="text-white mb-1">${tournament.title}</h4>
+                    <div class="d-flex align-items-center text-white-50 mb-2">
+                      <i class="icon-calendar mr-2"></i>
+                      <span>${tournament.date}</span>
+                    </div>
+                    <div class="d-flex align-items-center text-white-50">
+                      <i class="icon-location-pin mr-2"></i>
+                      <span>${tournament.location}</span>
+                    </div>
+                  </div>
+                  ${tournament.category === 'upcoming' ? '<span class="badge badge-warning position-absolute" style="top: 15px; right: 15px; padding: 8px 12px; font-size: 0.8rem;">Upcoming</span>' : ''}
+                </div>
+                <div class="p-4">
+                  <p class="mb-3">${tournament.description}</p>
+                  <button class="btn btn-sm ${tournament.buttonClass} view-gallery" 
+                          data-id="${tournament.id}" 
+                          data-title="${tournament.title}"
+                          data-action="${tournament.buttonAction}">
+                    ${tournament.buttonText}
+                  </button>
+                </div>
+              </div>
+            </div>
+          `;
+          container.insertAdjacentHTML('beforeend', card);
+        });
+        
+        // Add event listeners to the new buttons
+        document.querySelectorAll('.view-gallery').forEach(button => {
+          button.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const id = this.getAttribute('data-id');
+            const title = this.getAttribute('data-title');
+            const action = this.getAttribute('data-action');
+            
+            if (action === 'gallery' || action === 'highlights') {
+              openGallery(id, title);
+            } else if (action === 'register') {
+              // Handle registration
+              alert('Registration will open soon for ' + title);
+            }
+          });
+        });
+      }
+
+      // Open gallery modal
+      function openGallery(id, title) {
+        const tournament = tournaments.find(t => t.id === parseInt(id));
+        if (!tournament) return;
+        
+        const modal = document.getElementById('galleryModal');
+        const modalTitle = document.getElementById('galleryModalTitle');
+        const modalGallery = document.getElementById('modal-gallery');
+        const imageCaption = document.getElementById('image-caption');
+        
+        modalTitle.textContent = title;
+        modalGallery.innerHTML = '';
+        
+        // Add images to carousel
+        tournament.images.forEach((image, index) => {
+          const item = document.createElement('div');
+          item.className = `carousel-item ${index === 0 ? 'active' : ''}`;
+          item.innerHTML = `
+            <img src="images/TCAI/${image}" class="d-block w-100" alt="${title} - Image ${index + 1}">
+          `;
+          modalGallery.appendChild(item);
+        });
+        
+        // Update caption
+        imageCaption.textContent = `${title} - ${tournament.date} at ${tournament.location}`;
+        
+        // Show modal
+        $(modal).modal('show');
+      }
+
+      // Initialize
+      document.addEventListener('DOMContentLoaded', function() {
+        // Initial load
+        filterTournaments('all');
+        
+        // Filter buttons
+        document.querySelectorAll('.filter-btn').forEach(button => {
+          button.addEventListener('click', function() {
+            // Update active state
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+            
+            // Filter tournaments
+            const filter = this.getAttribute('data-filter');
+            filterTournaments(filter);
+          });
+        });
+        
+        // Load more button
+        document.getElementById('load-more-btn').addEventListener('click', function() {
+          const activeFilter = document.querySelector('.filter-btn.active').getAttribute('data-filter');
+          const filteredTournaments = activeFilter === 'all' 
+            ? tournaments 
+            : tournaments.filter(t => t.category === activeFilter);
+          
+          currentPage++;
+          const startIndex = (currentPage - 1) * itemsPerPage;
+          const endIndex = startIndex + itemsPerPage;
+          const moreTournaments = filteredTournaments.slice(startIndex, endIndex);
+          
+          if (moreTournaments.length > 0) {
+            displayTournaments(moreTournaments, true);
+          }
+          
+          // Hide button if no more items
+          if (endIndex >= filteredTournaments.length) {
+            this.style.display = 'none';
+          }
+        });
+      });
+    </script>
+
+    <style>
+      /* Add custom styles for the tournaments section */
+      .tournament-card {
+        border: 1px solid #eee;
+        border-radius: 10px;
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        background: #fff;
+      }
+      
+      .tournament-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      }
+      
+      .tournament-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(transparent, rgba(0,0,0,0.8));
+        padding: 20px;
+        color: white;
+      }
+      
+      .filter-btn.active {
+        background-color: #007bff;
+        color: white !important;
+      }
+      
+      .modal-content {
+        border: none;
+      }
+      
+      .carousel-item img {
+        max-height: 70vh;
+        object-fit: contain;
+        margin: 0 auto;
+      }
+      
+      .carousel-control-prev,
+      .carousel-control-next {
+        width: 10%;
+      }
+      
+      @media (max-width: 768px) {
+        .carousel-item img {
+          max-height: 50vh;
+        }
+      }
+    </style>
+
+    <div class="site-section" id="contact-section">
+      <div class="container">
+        <div class="row justify-content-center text-center mb-5">
+          <div class="col-md-8 section-heading">
+            <span class="subheading" data-translate="getInTouch">Get In Touch</span>
+            <h2 class="heading" data-translate="contactUs">Contact Us</h2>
+            <p data-translate="contactIntro">Have questions or want to get involved? We'd love to hear from you!</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-5 mb-md-0">
+            <form action="#" class="contact-form">
+              <div class="form-group">
+                <label for="name" data-translate="fullName">Full Name</label>
+                <input type="text" class="form-control" id="name" required>
+              </div>
+              <div class="form-group">
+                <label for="email" data-translate="emailAddress">Email Address</label>
+                <input type="email" class="form-control" id="email" required>
+              </div>
+              <div class="form-group">
+                <label for="phone" data-translate="phoneNumber">Phone Number</label>
+                <input type="tel" class="form-control" id="phone">
+              </div>
+              <div class="form-group">
+                <label for="subject" data-translate="subject">Subject</label>
+                <select class="form-control" id="subject">
+                  <option value="" data-translate="selectSubject">Select a subject</option>
+                  <option value="tournament" data-translate="tournamentInquiry">Tournament Inquiry</option>
+                  <option value="membership" data-translate="membership">Membership</option>
+                  <option value="sponsorship" data-translate="sponsorship">Sponsorship</option>
+                  <option value="general" data-translate="generalInquiry">General Inquiry</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="message" data-translate="message">Message</label>
+                <textarea class="form-control" id="message" rows="5" required></textarea>
+              </div>
+              <div class="form-group text-center">
+                <button type="submit" class="btn btn-primary py-3 px-5" data-translate="sendMessage">Send Message</button>
+              </div>
+            </form>
+          </div>
+          <div class="col-md-5 ml-auto">
+            <div class="contact-info">
+              <h3 class="mb-4" data-translate="contactInfo">Contact Information</h3>
+              <div class="mb-4">
+                <p class="mb-0" data-translate="addressLabel">Address:</p>
+                <p data-translate="address">Tennis Cricket Association of Maharashtra<br>123 Sports Complex, Andheri East<br>Mumbai, Maharashtra 400069</p>
+              </div>
+              <div class="mb-4">
+                <p class="mb-0" data-translate="phoneLabel">Phone:</p>
+                <p><a href="tel:+912234567890" data-translate="phoneNumber">+91 22 3456 7890</a></p>
+              </div>
+              <div class="mb-4">
+                <p class="mb-0" data-translate="emailLabel">Email:</p>
+                <p><a href="mailto:info@tenniscricketindia.org" data-translate="emailAddress">info@tenniscricketindia.org</a></p>
+              </div>
+              <div class="mb-4">
+                <p class="mb-2" data-translate="officeHours">Office Hours:</p>
+                <p data-translate="hours">Monday - Friday: 9:00 AM - 6:00 PM<br>Saturday: 10:00 AM - 4:00 PM<br>Sunday: Closed</p>
+              </div>
+              <div class="social-icons">
+                <a href="#" class="p-3" aria-label="Facebook"><span class="icon-facebook"></span></a>
+                <a href="#" class="p-3" aria-label="Twitter"><span class="icon-twitter"></span></a>
+                <a href="#" class="p-3" aria-label="Instagram"><span class="icon-instagram"></span></a>
+                <a href="#" class="p-3" aria-label="YouTube"><span class="icon-youtube-play"></span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="schedule-wrap2 clearfix">
+      <div class="d-md-flex align-items-center">
+        <div class="hours mr-md-4 mb-4 mb-lg-0">
+          <strong class="d-block">Hours</strong>
+          Opening: 7:30am &mdash;
+          Closing: 9:00pm
+        </div>
+        <div class="cta ml-auto">
+          <a href="#" class="d-flex d-md-flex align-items-center btn">
+            <span class="mx-auto">  <span data-translate="viewSchedule">Contact us</span> <span class="arrow icon-keyboard_arrow_right"></span></span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer-section" style="background-color: #0a4d68; color: #fff;">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 mb-5 mb-md-0">
+            <div class="site-logo mb-4">
+              <img src="images/logo.png" alt="Logo" style="width: 150px; height: 150px; object-fit: cover;">
+              <a href="index.html" style="color: #fff; font-size: 24px; font-weight: 700;">
+                TCAM<span style="color: #f8f9fa;">.</span>
+              </a>
+            </div>
+            <p data-translate="aboutTcai">Tennis Cricket Association of India is the governing body for tennis cricket in Maharashtra, dedicated to promoting and developing the sport across the state.</p>
+            <div class="social-links mt-4">
+              <a href="#" class="text-white mr-3"><span class="icon-facebook"></span></a>
+              <a href="#" class="text-white mr-3"><span class="icon-twitter"></span></a>
+              <a href="#" class="text-white mr-3"><span class="icon-instagram"></span></a>
+              <a href="#" class="text-white"><span class="icon-youtube-play"></span></a>
+            </div>
+          </div>
+
+          <div class="col-md-3 ml-auto mb-5 mb-md-0">
+            <h3 class="text-white mb-4" data-translate="quickLinks">Quick Links</h3>
+            <ul class="list-unstyled footer-links">
+              <li><a href="#home-section" class="text-white" data-translate="home">Home</a></li>
+              <li><a href="#about-section" class="text-white" data-translate="about">About Us</a></li>
+              <li><a href="#leadership-section" class="text-white" data-translate="leadership">Leadership</a></li>
+              <li><a href="#tournaments-section" class="text-white" data-translate="tournaments">Tournaments</a></li>
+              <li><a href="#gallery-section" class="text-white" data-translate="gallery">Gallery</a></li>
+              <li><a href="#contact-section" class="text-white" data-translate="contact">Contact</a></li>
+            </ul>
+          </div>
+
+          <div class="col-md-4">
+            <h3 class="text-white mb-4" data-translate="contactUs">Contact Us</h3>
+            <ul class="list-unstyled text-white">
+              <li class="mb-3">
+                <span class="icon-map-marker mr-2"></span>
+                <span data-translate="officeAddress">123 Cricket Avenue, Mumbai, Maharashtra 400001</span>
+              </li>
+              <li class="mb-3">
+                <span class="icon-phone mr-2"></span>
+                <a href="tel:+918421023200" class="text-white">+91 84210 23200</a>
+              </li>
+              <li class="mb-3">
+                <span class="icon-envelope-o mr-2"></span>
+                <a href="mailto:info@tcai.org" class="text-white">info@tcai.org</a>
+              </li>
+            </ul>
+            <div class="mt-4">
+              <h4 class="text-white mb-3" data-translate="newsletter">Newsletter</h4>
+              <form action="#" class="subscribe-form">
+                <div class="form-group d-flex">
+                  <input type="email" class="form-control rounded-0" placeholder="Your email" data-translate="emailPlaceholder">
+                  <button type="submit" class="btn btn-primary rounded-0" data-translate="subscribe">Subscribe</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div class="row pt-5 mt-5 border-top border-secondary">
+          <div class="col-md-12 text-center">
+            <p class="mb-0">
+              <small class="text-white-50">
+                &copy; <script>document.write(new Date().getFullYear());</script> Tennis Cricket Association of India. 
+                <span data-translate="allRights">All rights reserved</span> | 
+                <a href="#" class="text-white-50" data-translate="privacy">Privacy Policy</a> | 
+                <a href="#" class="text-white-50" data-translate="terms">Terms of Service</a>
+              </small>
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+  <!-- .site-wrap -->
+
+  <script src="js/jquery-3.3.1.min.js"></script>
+  <script src="js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="js/jquery-ui.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/jquery.stellar.min.js"></script>
+  <script src="js/jquery.countdown.min.js"></script>
+  <script src="js/bootstrap-datepicker.min.js"></script>
+  <script src="js/jquery.easing.1.3.js"></script>
+  <script src="js/aos.js"></script>
+  <script src="js/jquery.fancybox.min.js"></script>
+  <script src="js/jquery.sticky.js"></script>
+  <script src="js/jquery.mb.YTPlayer.min.js"></script>
+
+  <script>
+    // Initialize Hero Carousel
+    $(document).ready(function(){
+      $('.hero-carousel').owlCarousel({
+        items: 1,
+        loop: true,
+        nav: false,
+        dots: false,
+        autoplay: true,
+        autoplayTimeout: 4000,
+        autoplayHoverPause: true,
+        smartSpeed: 1000,
+        animateOut: 'fadeOut',
+        animateIn: 'fadeIn'
+      });
+    });
+  </script>
+
+</body>
+</html>
